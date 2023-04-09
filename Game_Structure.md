@@ -260,9 +260,13 @@ Description:
 **Features: record comparision, insertion and display**
 
 1. code (file IO)
+
 require data from timer and user input -> name of the user
+
 (maybe just keep the top 3 of each mode we have) 
+
 *code here*
+
 ```cpp
 ```
 
@@ -285,18 +289,25 @@ Description:
 
 1. coding scheme
     randomly generate the 2-3 monsters in the map
-       a. DFS search for all the possible path in the maze with respect to the start point of the hunter
-       b. record the path
-       c. the hunter will randomly select path and hunt with in a distance（设置半径 int R，所有路径仅仅访问 <= R 个node）
-       d. visiting pace: one node/second
-       e. 实体碰撞detection -> deduction in HP for player; reset the position of the monster
+    
+    a. DFS search for all the possible path in the maze with respect to the start point of the hunter
+
+    b. record the path
+
+    c. the hunter will randomly select path and hunt with in a distance（设置半径 int R，所有路径仅仅访问 <= R 个node）
+
+    d. visiting pace: one node/second
+
+    e. 实体碰撞detection -> deduction in HP for player; reset the position of the monster
     
     *code here*
+    
     
     ```cpp
     ```
     
 2. classes, functions and files created
+
 
 3. others
 
