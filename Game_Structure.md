@@ -14,8 +14,9 @@
 - [Player Movement](#item-three)
 - [Timer](#item-four)
 - [Record System](#item-five)
-- [Dependency List](#appendix_one)
-- [Quick Guide to "ncurses.h"](#appendix_two)
+- [Hunters](#item-six)
+- [Dependency List](#appendix-one)
+- [Quick Guide to "ncurses.h"](#appendix-two)
 
 <a id="item-one"></a>
 ### Overview
@@ -23,19 +24,26 @@ suggested library to import: "ncurses.h" in cpp linux
 
 a powerful library to create a interactive user interface and allows in-time keyboard response
 
-for quick guide press [here](#appendix_two)
+for quick guide press [here](#appendix-two)
 
 ---
 
 <a id="item-two"></a>
 ### Random Maze Generation 
+Description:
 1. code:
 ```cpp
 ```
-2. functions and files created
+2. classes, functions and files created
+
+3. others
+    *(specify any requirement in input output format or anything else that is worth pay attention to)*
+
+---
 
 <a id="item-three"></a>
 ### Player Movement
+Description:
 1. suggested coding scheme: ncurses + key board detection 
 
 *here is a sample use of user control*
@@ -181,13 +189,14 @@ In our game, panel control could be **w a s d** or **KEY_LEFT KEY_RIGHT KEY_UP K
         
     }
 ```
-2. functions and files created
+2. classes, functions and files created
     | Note that the player movement is really important part of our game! 
-
+    
 ---
 
 <a id="item-four"></a>
 ### Timer
+Description:
 1. feasible plan (some codes included)
 | How to implement the Timer has not be decided, I came up with two plans:
 
@@ -234,7 +243,7 @@ b. by directly taking system time
 2) Do not display timer to the user
     measuring system time at the begining and the end of the game, do subtraction and obtain the elapsed_time
 
-2. functions and files created
+2. classes, functions and files created
     return value -> elapsed time
     use in the [Record System （游戏记录系统）](#item-five)
 
@@ -242,19 +251,58 @@ b. by directly taking system time
 
 <a id="item-five"></a>
 ### Record System
+Description:
+**Features: record comparision, insertion and display**
+
 1. code (file IO)
 require data from timer and user input -> name of the user
-
+(maybe just keep the top 3 of each mode we have) 
+*code here*
 ```cpp
 ```
 
+2. classes, functions and files created
+    functions:
+        Insertrecord()
+        Display()
+    file:
+        Record.h
+        Record.cpp
+
+3. others
+
 ---
 
-<a id="appendix_one"></a>
+<a id="item-six"></a>
+### Hunters
+Description:
+**randomly generate hunters to hunt player in the maze**
+
+1. coding scheme
+    randomly generate the 2-3 monsters in the map
+    a. DFS search for all the possible path in the maze with respect to the start point of the hunter
+    b. record the path
+    c. the hunter will randomly select path and hunt with in a distance（设置半径 int R，所有路径仅仅访问 <= R 个node）
+    d. visiting pace: one node/second
+    e. 实体碰撞detection -> deduction in HP for player; reset the position of the monster
+    
+    *code here*
+    
+    ```cpp
+    ```
+    
+2. classes, functions and files created
+
+3. others
+
+
+---
+
+<a id="appendix-one"></a>
 ### Dependency List
 ---
 
-<a id="appendix_two"></a>
+<a id="appendix-two"></a>
 ### Quick Guide to "ncurses.h"
 
 1. description
