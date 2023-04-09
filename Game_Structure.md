@@ -145,7 +145,9 @@ return 0;
 }
 ```
 The basic Idea of using this library is to create a new window interface (instead of using the shell console to input and output)
+
 We can use getch() to timely get which key is being pressed.
+
 In our game, panel control could be **w a s d** or **KEY_LEFT KEY_RIGHT KEY_UP KEY_DOWN** so the switch flow could look like:
 
 ```cpp
@@ -201,9 +203,12 @@ Description:
 | How to implement the Timer has not be decided, I came up with two plans:
 
 1) display the timer on the game window (visible to player) and time flows.
-    The first plan is a little tricky to implement because if we want the timer be displayed we will have to make the main.cpp and timer.cpp parallel other wise the user will find the game process be impeded. (for example, the keyboard hit detection will not be continues 因为计时器程序需要sleep(1); 休眠，然后second++; )
+    The first plan is a little tricky to implement because if we want the timer be displayed we will have to make the main.cpp and timer.cpp parallel other wise the user will find the game process be impeded. 
+    (for example, the keyboard hit detection will not be continues 因为计时器程序需要sleep(1); 休眠，然后second++; )
+    
     I came up with two plans to solve the problem:
-        a. by using new-thread
+
+a. by using new-thread
 ```cpp
 void timer_thread (WINDOW* timer_window) 
 {
@@ -280,11 +285,11 @@ Description:
 
 1. coding scheme
     randomly generate the 2-3 monsters in the map
-    a. DFS search for all the possible path in the maze with respect to the start point of the hunter
-    b. record the path
-    c. the hunter will randomly select path and hunt with in a distance（设置半径 int R，所有路径仅仅访问 <= R 个node）
-    d. visiting pace: one node/second
-    e. 实体碰撞detection -> deduction in HP for player; reset the position of the monster
+       a. DFS search for all the possible path in the maze with respect to the start point of the hunter
+       b. record the path
+       c. the hunter will randomly select path and hunt with in a distance（设置半径 int R，所有路径仅仅访问 <= R 个node）
+       d. visiting pace: one node/second
+       e. 实体碰撞detection -> deduction in HP for player; reset the position of the monster
     
     *code here*
     
