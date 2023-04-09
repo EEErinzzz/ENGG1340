@@ -192,7 +192,8 @@ In our game, panel control could be **w a s d** or **KEY_LEFT KEY_RIGHT KEY_UP K
     }
 ```
 2. classes, functions and files created
-    | Note that the player movement is really important part of our game! 
+
+| Note that the player movement is really important part of our game! 
     
 ---
 
@@ -208,42 +209,42 @@ Description:
     
     I came up with two plans to solve the problem:
 
-a. by using new-thread
-```cpp
-void timer_thread (WINDOW* timer_window) 
-{
-    auto start_time = std::chrono::system_clock::now();
-    while (true) {
-        auto current_time = std::chrono::system_clock::now();
-        auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(current_time-start_time);
+   a. by using new-thread
+   ```cpp
+   void timer_thread (WINDOW* timer_window) 
+   {
+       auto start_time = std::chrono::system_clock::now();
+       while (true) {
+           auto current_time = std::chrono::system_clock::now();
+           auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(current_time-start_time);
 
-        werase(timer_window);
-        wprintw(timer_window,"%ld seconds has passed", elapsed_time.count());
-        wrefresh(timer_window);
+           werase(timer_window);
+           wprintw(timer_window,"%ld seconds has passed", elapsed_time.count());
+           wrefresh(timer_window);
 
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+           std::this_thread::sleep_for(std::chrono::seconds(1));
 
-    }
-}
-```
-In this way, we can create a sub-window in our ncurses window that could run the timer and display the timer correctly
-*here is how we can initialize the thread window in the main program*
-        
-```cpp
-// initiation of the timer_thread
-    int timer_height = 3;
-    int timer_width = 30;
-    int timer_x = 18 ;
-    int timer_y = 8 ;
-    WINDOW* timer_window = newwin(timer_height,timer_width,timer_y,timer_x);
-    box(timer_window, 0 ,0);
-    wrefresh(timer_window);
+       }
+   }
+   ```
+   In this way, we can create a sub-window in our ncurses window that could run the timer and display the timer correctly
+   *here is how we can initialize the thread window in the main program*
 
-    std::thread timer(timer_thread,timer_window);
-```
+   ```cpp
+   // initiation of the timer_thread
+       int timer_height = 3;
+       int timer_width = 30;
+       int timer_x = 18 ;
+       int timer_y = 8 ;
+       WINDOW* timer_window = newwin(timer_height,timer_width,timer_y,timer_x);
+       box(timer_window, 0 ,0);
+       wrefresh(timer_window);
 
-b. by directly taking system time
-    Getting systemtime directly and do calculation to obtain game time
+       std::thread timer(timer_thread,timer_window);
+   ```
+
+   b. by directly taking system time
+       Getting systemtime directly and do calculation to obtain game time
 
 2) Do not display timer to the user
     measuring system time at the begining and the end of the game, do subtraction and obtain the elapsed_time
@@ -261,9 +262,9 @@ Description:
 
 1. code (file IO)
 
-require data from timer and user input -> name of the user
+   require data from timer and user input -> name of the user
 
-(maybe just keep the top 3 of each mode we have) 
+   (maybe just keep the top 3 of each mode we have) 
 
 *code here*
 
