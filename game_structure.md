@@ -1,4 +1,4 @@
-# game_structure
+# Game_Structure
 | created by Yang Haozhe Thomas.
 
 | This is a feasible structure proposal of the group project of ENGG1340, aiming to provide you with detailed and clear structure how to create the game.
@@ -13,7 +13,9 @@
 - [Random Maze Generation](#item-two)
 - [Player Movement](#item-three)
 - [Timer](#item-four)
-- [Quick Guide to "ncurses.h"](#appendix_one)
+- [Record System](#item-five)
+- [Dependency List](#appendix_one)
+- [Quick Guide to "ncurses.h"](#appendix_two)
 
 <a id="item-one"></a>
 ### Overview
@@ -21,7 +23,9 @@ suggested library to import: "ncurses.h" in cpp linux
 
 a powerful library to create a interactive user interface and allows in-time keyboard response
 
-for quick guide press [here](#appendix_one)
+for quick guide press [here](#appendix_two)
+
+---
 
 <a id="item-two"></a>
 ### Random Maze Generation 
@@ -179,7 +183,9 @@ In our game, panel control could be **w a s d** or **KEY_LEFT KEY_RIGHT KEY_UP K
 ```
 2. functions and files created
     | Note that the player movement is really important part of our game! 
-    
+
+---
+
 <a id="item-four"></a>
 ### Timer
 1. feasible plan (some codes included)
@@ -230,9 +236,25 @@ b. by directly taking system time
 
 2. functions and files created
     return value -> elapsed time
-    use in the recordlist （游戏记录系统）
+    use in the [Record System （游戏记录系统）](#item-five)
+
+---
+
+<a id="item-five"></a>
+### Record System
+1. code (file IO)
+require data from timer and user input -> name of the user
+
+```cpp
+```
+
+---
 
 <a id="appendix_one"></a>
+### Dependency List
+---
+
+<a id="appendix_two"></a>
 ### Quick Guide to "ncurses.h"
 
 1. description
