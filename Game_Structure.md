@@ -22,7 +22,7 @@
 ### Overview
 suggested library to import: "ncurses.h" in cpp linux
 
-a powerful library to create a interactive user interface and allows in-time keyboard response
+a powerful library to create an interactive user interface and allows in-time keyboard response
 
 for quick guide press [here](#appendix-two)
 
