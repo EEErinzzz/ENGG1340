@@ -81,7 +81,7 @@ int main() {
             }
             break;
         case KEY_RIGHT:
-            if (player_x < BW - 1 ) {
+            if (player_x < BW - 1) {
                 board[player_y][player_x] = ' ';
                 player_x++;
                 board[player_y][player_x] = 'X';
