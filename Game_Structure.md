@@ -15,6 +15,7 @@
 - [Timer](#item-four)
 - [Record System](#item-five)
 - [Hunters](#item-six)
+- [main.cpp](#item-n)
 - [Dependency List](#appendix-one)
 - [Quick Guide to "ncurses.h"](#appendix-two)
 
@@ -313,7 +314,7 @@ Description:
 
    require data from timer and user input -> name of the user
 
-   (maybe just keep the top 3 of each mode we have) 
+   (just keep the top 5 of each mode we have) 
 
 *code here*
 
@@ -321,6 +322,7 @@ Description:
 ```
 
 2. classes, functions and files created
+    temporary files to store the information
     functions:
         Insertrecord()
         Display()
@@ -363,6 +365,18 @@ Description:
 
 
 ---
+<a id="item-n"></a>
+### main.cpp
+**Main function of the program
+
+1. UI design
+2. open ncurses window
+3. mode selection
+  | different mode
+  | record display (include record.h)
+4. quit function
+
+
 
 <a id="appendix-one"></a>
 ### Dependency List
