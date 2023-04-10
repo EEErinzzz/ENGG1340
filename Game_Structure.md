@@ -497,7 +497,9 @@ To get more detailed information, please refer to the [ncurses.h docmentation](h
 <a id="appendix-three"></a>
 ### Pending Questions
 1. Screen refresh and format
+
 | There are chances that the screen cannot be viewed properly
 
 2. Hunter Bot
+
 | Is it possible to add hunter bot that do not impede the game flow?
