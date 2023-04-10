@@ -450,6 +450,7 @@ endwin();
 a. compilation note:
 ```shell
 g++ -pedantic-errors -std=c++11 gamedemo.cpp -o game -lncurses
+g++ -pedantic-errors -std=c++11 gamedemo.cpp -o game -lncurses -pthread # if there is subwindow thread
 ```
 Please compile in this way otherwise an error will be raised. Pay attention to *-lncurses* at the end of the compilation command.
 
