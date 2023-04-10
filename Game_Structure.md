@@ -324,10 +324,17 @@ Description:
 2. classes, functions and files created
     temporary files to store the information
     functions:
+        
+        ```cpp
         Insertrecord()
+        ```
+        ```cpp
         Display()
+        ```
     file:
+        
         Record.h
+        
         Record.cpp
 
 3. others
