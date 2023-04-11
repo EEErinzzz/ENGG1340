@@ -326,12 +326,14 @@ Description:
     temporary files to store the information
     functions:
         
-        ```cpp
-        Insertrecord()
-        ```
-        ```cpp
-        Display()
-        ```
+```cpp
+Insertrecord()
+```
+
+```cpp
+Display()
+```
+
     file:
         
         Record.h
