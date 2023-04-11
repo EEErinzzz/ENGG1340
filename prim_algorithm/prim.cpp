@@ -84,8 +84,7 @@ void maze::prim::explore()
 					{
 						map[y][x - 1] = land;
 						occupied = true;
-					
-          }
+					}
 				}
 				else if (rand_dir == east)
 				{
@@ -94,12 +93,8 @@ void maze::prim::explore()
 						map[y][x + 1] = land;
 						occupied = true;
 					}
-				
-        }
-			
-      }
-		
-    }
-	
-  }
+				}
+			}
+		}
+	}
 }
