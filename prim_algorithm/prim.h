@@ -9,7 +9,8 @@ namespace maze
 	{
 	public:
 		using maze_generator::set_all_wall;
-		void explore(int y, int x); // in prim algorithm, a random direction is selected to be explored 
+		void explore(int y, int x); 
+		// in prim algorithm, a random direction is selected to be explored 
 		
 	private:
 		static constexpr int frontier = 2;
