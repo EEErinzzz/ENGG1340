@@ -380,11 +380,11 @@ Description:
 **Main function of the program
 
 1. UI design
-2. open ncurses window
-3. mode selection
+2. open ncurses window (Done)
+3. mode selection (Done)
   | different mode
-  | record display (include record.h)
-4. quit function
+  | record display (include record.h) (Testing)
+4. quit function ("Ctrl+z")
 
 
 
