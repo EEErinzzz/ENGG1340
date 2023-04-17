@@ -1,100 +1,94 @@
-#include "prim.h"
-#include <cstdlib>
+#include "maze_generator.h"
 #include<time.h>
+#include <iostream>
+#include <cstdio>
+#include <algorithm>
 
-void maze::prim::find_frontier(int y, int x)
+
+maze_generation::maze_generation(int s)
 {
-	map[y][x] = land;
-		//mark the current position as land
-	if ((y > 2) && (wall == map[y - 2][x]))
+	//initialize all grids in the maze as wall
+	size = s;
+	maze.resize(size);
+	for (int j = 0; j < size; j++)
 	{
-		map[y - 2][x] = frontier;
-		frontiers.push_back({ y - 2,x });
+		maze[j].resize(size);
+		for (int i = 0; i < size; i++)
+		{
+
+			maze[j][i] = wall;
+		}
 	}
-	if ((y + 2 <= map.size() - 2) && (wall == map[y + 2][x]))
-	{
-		map[y+2][x] = frontier;
-		frontiers.push_back({ y + 2,x });
+	// set the outmost periphery as the land to prevent from overriding the boundary
+	for (int i = 0; i < size; i++) {
+		maze[i][0] = 1;
+		maze[0][i] = 1;
+		maze[size - 1][i] = 1;
+		maze[i][size - 1] = 1;
 	}
-	if ((x >= 3) && wall == map[y][x - 2])
-	{
-		map[y][x - 2] = frontier;
-		frontiers.push_back({ y,x - 2 });
-	}
-	if ((x + 2 <= map[0].size() - 2) && (wall == map[y][x + 2]))
-	{
-		map[y][x + 2] = frontier;
-		frontiers.push_back({ y,x + 2 });
-	}
+
 }
 
-void maze::prim::explore()
+void maze_generation::maze_generator()
 {
-	//*******************intialization:generate random start point*****************
-	srand((unsigned)time(NULL));
-	int rand_start_y = (rand() % (map.size() - 1)) + 1;
-		// generate a random int in range[1,height of the map]
-	int rand_start_x = (rand() % (map[0].size() - 1)) + 1;
-		// generate a random int in range[1,width of the map]
-	find_frontier(rand_start_y, rand_start_x);
-	//find the intial frontier
+	frontiers.push_back({ 2,2 });
+	// randomly choose a grid as the initial point
 
-	while (!frontiers.empty())
+	while (frontiers.size())
 	{
-		bool occupied = false;
-
-		srand((unsigned)time(NULL));
-		int rand_frontier = rand() % (frontiers.size() - 1);
-			//randomly generate a number as the index of the frontier
-		int y = frontiers[rand_frontier].x;
-		int x = frontiers[rand_frontier].y;
-			//a randomly selected frontier is used as the new start
-		frontiers.erase(frontiers.begin() + rand_frontier);
-			// since it is used as the new start, it should be popped out
-		find_frontier(x, y);
-			//find the frontier of the new start
-
-		while (!occupied)//loop until find a valid movement
-		{
-			srand((unsigned)time(NULL));
-			int rand_dir = rand() % 4;
-				// generate a random int in range[1,3]
-	     		// each int in [1,3] symbolizes a direction
-
-			if (rand_dir == north)
-				//move to the north(0)
-			{
-				if ((y > 2) && (land == map[y - 2][x]))
-					//boundary judgment
-				{
-					occupied = true;
-					map[y - 1][x] = land;
-				}
-				else if (rand_dir == south)
-				{
-					if ((y + 2 < map.size() - 1) && (land == map[y + 2][x]))
-					{
-						map[y + 1][x] = land;
-						occupied = true;
-					}
-				}
-				else if (rand_dir == west)
-				{
-					if (x > 2 && land == map[y][x - 2])
-					{
-						map[y][x - 1] = land;
-						occupied = true;
-					}
-				}
-				else if (rand_dir == east)
-				{
-					if (x + 2 < map[0].size() - 1 && land == map[y][x + 2])
-					{
-						map[y][x + 1] = land;
-						occupied = true;
-					}
+		srand(time(0));
+		int r = rand() % frontiers.size();
+		int cur_y = frontiers[r].first;
+		int cur_x = frontiers[r].second;
+		
+		// judge whether the surounding(up,down,left and right) of cur_ is connected by land
+		int count = 0;
+		for (int i = cur_y - 1; i < cur_y + 2; i++) {
+			for (int j = cur_x - 1; j < cur_x + 2; j++) {
+				if (abs(cur_y - i) + abs(cur_x - j) == 1 && maze[i][j] > 0) {
+					++count;
 				}
 			}
 		}
+		
+		if (count <= 1)
+		{
+			maze[cur_y][cur_x] = 1;
+			// make it the land
+
+			// add the frontiers of the new land to the vector frontiers
+			for (int i = cur_y - 1; i < cur_y + 2; i++)
+			{
+				for (int j = cur_x - 1; j < cur_x + 2; j++)
+				{
+					if (abs(cur_y - i) + abs(cur_x - j) == 1 && maze[i][j] == 0) frontiers.push_back({ i,j });
+				}
+			}
+		}
+		
+		frontiers.erase(frontiers.begin()+r);
+			// since it is already marked as land, it should be removed from the frontiers vector
+	}
+	//set the exit and entry
+	maze[2][1] = 1;
+	for (int i = size - 3; i >= 0; i--) {
+		if (maze[i][size - 3] == 1) 
+		{
+			maze[i][size - 2] = 1;
+			break;
+		}
+	}
+}
+
+void maze_generation::maze_printer()
+{
+	for (int i = 0; i < size; i++) 
+	{
+		for (int j = 0; j < size; j++) 
+		{
+			if (maze[i][j] == 1) printf(" ");
+			else printf("M");
+		}
+		cout << endl;
 	}
 }
