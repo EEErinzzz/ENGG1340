@@ -1,35 +1,32 @@
-#ifndef PRIM_H
-#define PRIM_H
-#include "general_maze_generator.h"
 #include <vector>
 using namespace std;
-namespace maze
+
+#ifndef Generator_H
+#define Generator_H
+
+typedef pair<int, int> PII;
+
+class maze_generation
 {
-	class prim : public maze_generator
-	{
-	public:
-		using maze_generator::set_all_wall;
-		void explore(int y, int x); 
-		// in prim algorithm, a random direction is selected to be explored 
-		
-	private:
-		static constexpr int frontier = 2;
-		
-		struct frontier_candidates 
-		{
-			int y;
-			int x;
-		};
-		vector <frontier_candidates> frontiers;
-		//creat a object vector 
-		//each element of the vector has x and y value which is constructed in the struct
+public:
+	void maze_generator();
+	//use prim algorithm to generator the maze
 
-		void find_frontier(int y, int x);
-		// this function is to find the surroundinig grid of the current grid
-	};
-}
+	void maze_printer();
+	//print the maze
+
+	maze_generation(int s);
+	// a constructor 
+	// initialize all grids to be the wall
+	// set the outmost periphery as the land
+private:
+	int size;
+	vector<vector<int>> maze;
+	int wall = 0;
+	int land = 1;
+	vector<PII> frontiers;
+
+};
 
 
-#endif // !PRIM_H
-
-
+#endif
