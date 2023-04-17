@@ -6,6 +6,7 @@
 #include<string>
 #include<ncurses.h>
 #include<unistd.h>
+#include "maze_generator.h"
 using namespace std;
 
 struct Record
@@ -78,4 +79,13 @@ int main()
 	endwin();
 	cout<<"Testing the record system"<<endl;
 	cout<<"Gamemode:"<<record.GameMode<<endl;
+	cout << "Enter a size for the maze" << endl;
+	int size;
+	cin >> size;
+	maze_generation our_maze(size);
+	// creatt the object
+	our_maze.maze_generator();
+	// generate the maze
+	our_maze.maze_printer();
+	// print the maze
 }
