@@ -83,7 +83,7 @@ int main()
 	int size;
 	cin >> size;
 	maze_generation our_maze(size);
-	// creatt the object
+	// create the object
 	our_maze.maze_generator();
 	// generate the maze
 	our_maze.maze_printer();
