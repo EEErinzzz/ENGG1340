@@ -86,8 +86,8 @@ void maze_generation::maze_printer()
 	{
 		for (int j = 0; j < size; j++) 
 		{
-			if (maze[i][j] == 1) printf(" ");
-			else printf("M");
+			if (maze[i][j] == 1) printf("  ");
+			else printf("MM");
 		}
 		cout << endl;
 	}
