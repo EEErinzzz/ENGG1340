@@ -1,5 +1,4 @@
-//main.cpp: How to compile: g++ main.cpp -o main -l ncurses
-
+//main.cpp: How to compile: g++ main.cpp maze_gernerator.cpp -o main -l ncurses
 
 #include<iostream>
 #include<fstream>
@@ -7,6 +6,7 @@
 #include<ncurses.h>
 #include<unistd.h>
 #include "maze_generator.h"
+
 using namespace std;
 
 struct Record
@@ -14,14 +14,17 @@ struct Record
 	string GameMode;
 	string PlayerName;
 	int TimeUsed;
+	int size;
 };
 
 Record record;
 
 void GameSelection();
 void GameSetting();
+void GamePlay();
 void welcomepage()
 {
+	record.size = 20; //Default size
 	record.GameMode = "Game not started";
 	clear();	
 	initscr();
@@ -56,10 +59,11 @@ void GameSelection()
 	ModeSelection=getch();
 	switch(ModeSelection)
 	{
-	case '1': record.GameMode = "Classic"; break;
+	case '1': record.GameMode = "Classic";break;
 	case '2': record.GameMode = "Prey"; break;
 	case '3': welcomepage(); break;
 	}
+	GamePlay();
 }
 
 void GameSetting()
@@ -72,20 +76,48 @@ void GameSetting()
 	welcomepage();
 }
 
+void GamePlay()
+{
+	clear();
+	char player = 'X';
+	int px= 1;
+	int py = 2;
+	//Player's X and Y coordinate
+	int endx = 18;
+	int endy = 17;
+	//X, Y coordinate of exit
+	maze_generation our_maze(record.size);
+	// create the object
+	our_maze.maze_generator();
+	// generate the maze
+	our_maze.player_insertion(player, py, px);
+	// Insert player to the maze
+	
+	char move;
+	while (px != endx | py != endy)
+	{
+		clear();
+		our_maze.maze_printer();
+		// print the maze
+		cout << py << " " << px << endl;
+		move = getch();
+		switch (move)
+		{
+		case 'w': if (our_maze.check_wall(py -1, px)) { our_maze.update_player_location(py, px, py -1, px); py -= 1; }  break;
+		case 'a': if (our_maze.check_wall(py, px-1)) { our_maze.update_player_location(py, px, py, px - 1); px -= 1; } break;
+		case 's': if (our_maze.check_wall(py + 1, px)) { our_maze.update_player_location(py, px, py + 1, px); py += 1; } break;
+		case 'd': if (our_maze.check_wall(py, px + 1)) { our_maze.update_player_location(py, px, py, px + 1); px += 1; }  break;
+		}
+	}
+	
+}
 
 int main()
 {
+	system("clear");
 	welcomepage();
 	endwin();
 	cout<<"Testing the record system"<<endl;
 	cout<<"Gamemode:"<<record.GameMode<<endl;
-	cout << "Enter a size for the maze" << endl;
-	int size;
-	cin >> size;
-	maze_generation our_maze(size);
-	// create the object
-	our_maze.maze_generator();
-	// generate the maze
-	our_maze.maze_printer();
-	// print the maze
+	cout << "Size:" << record.size << endl;
 }
