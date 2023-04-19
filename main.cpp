@@ -1,5 +1,5 @@
 //main.cpp: How to compile: g++ main.cpp maze_gernerator.cpp -o main -l ncurses
-
+//Required: prim.cpp prim.h maze_gernerator.cpp maze_generator.h
 #include<iostream>
 #include<fstream>
 #include<string>
