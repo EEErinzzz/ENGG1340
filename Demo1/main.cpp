@@ -6,6 +6,8 @@
 #include<ncurses.h>
 #include<unistd.h>
 #include "maze_generator.h"
+#include <ctime>
+#include <chrono>
 
 using namespace std;
 
@@ -94,6 +96,7 @@ void GamePlay()
 	// Insert player to the maze
 	
 	char move;
+	auto start_time = std::chrono::system_clock::now();
 	while (px != endx | py != endy)
 	{
 		clear();
@@ -109,7 +112,10 @@ void GamePlay()
 		case 'd': if (our_maze.check_wall(py, px + 1)) { our_maze.update_player_location(py, px, py, px + 1); px += 1; }  break;
 		}
 	}
-	
+	auto end_time = std::chrono::system_clock::now();
+	auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(end_time-start_time);
+	int seconds = static_cast<int>(elapsed_time.count());
+	record.TimeUsed = seconds;
 }
 
 int main()
@@ -120,4 +126,5 @@ int main()
 	cout<<"Testing the record system"<<endl;
 	cout<<"Gamemode:"<<record.GameMode<<endl;
 	cout << "Size:" << record.size << endl;
+	cout << "Gametime: " << record.TimeUsed << endl;
 }
