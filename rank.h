@@ -1,5 +1,5 @@
 #include<iostream>
-
+#include<string>
 struct Record
 {
 	std::string GameMode;
