@@ -1,6 +1,7 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include<algorithm>
 #include "rank.h"
 using namesapce std;
 int main()
