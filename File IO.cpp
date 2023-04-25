@@ -4,12 +4,17 @@
 #include<algorithm>
 #include "rank.h"
 using namesapce std;
+bool SortByTime(rank a, rank b);
+void Insertrecord(string name, int time);
+void Display();
+struct Record rank[5];
+
 int main()
 {
   
 }
 
-Record rank[5];
+
 
 bool SortByTime(rank a, rank b)
 {
