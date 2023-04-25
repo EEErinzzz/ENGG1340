@@ -13,7 +13,7 @@ Record rank[5];
 bool SortByTime(rank a, rank b)
 {
 	if( a.TimeUsed != b.TimeUsed)
-		return a.TimeUsed > b.TimeUsed;
+		return a.TimeUsed < b.TimeUsed;
 }
 
 void Insertrecord(string name, int time)
@@ -23,7 +23,7 @@ void Insertrecord(string name, int time)
 	if ( fout.fail() ){
 		cout << "Error in opening the file !" << endl;
 	}else{
-		if( time > rank[5].TimeUsed){
+		if( time < rank[5].TimeUsed){
 			rank[5].TimeUsed=time;
 			rank[5].PlayerName=name;
 			sort(rank, rank +5, SortByTime);
