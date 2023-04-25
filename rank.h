@@ -1,3 +1,5 @@
+#idndef RANK_H
+#define RANK_H
 #include<iostream>
 #include<string>
 struct Record
@@ -7,4 +9,4 @@ struct Record
 	int TimeUsed;
 	int size;
 };
-
+#endif
