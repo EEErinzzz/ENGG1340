@@ -1,6 +1,9 @@
 #include<iostream>
 using namespace std;
-struct Record()
+struct Record
 {
-  
-}
+	string GameMode;
+	string PlayerName;
+	int TimeUsed;
+	int size;
+};
