@@ -1,4 +1,4 @@
-#idndef RANK_H
+#ifndef RANK_H
 #define RANK_H
 #include<iostream>
 #include<string>
