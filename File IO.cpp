@@ -1,73 +1,58 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include<sstream>
 #include<algorithm>
 #include "rank.h"
-using namesapce std;
+#include "recordsys.h"
+
+using namespace std;
 bool SortByTime(Record a, Record b);
-void Addrecord(string name, int time);
 void Insertrecord(string name, int time);
 void Display();
-struct Record rank[5];
+struct Record userrank[5] = {{"","",999,0}, {"","",999,0}, {"","",999,0}, {"","",999,0}, {"","",999,0}};
+/*
+int main()
+{
+  
+}
+*/
 
-int main() // read the output from other cpp files and write it to the txt file
-{
-   
-}
-int rank(string name, int time)
-{
-	fstream fin("rank_classic.txt",ios::in)
-}
 
 bool SortByTime(Record a, Record b)
 {
-	if( a.TimeUsed != b.TimeUsed)
+	//if( a.TimeUsed != b.TimeUsed)
 		return a.TimeUsed < b.TimeUsed;
 }
-void Addrecord(string name, int time) // in case there are less than 5 players play the game
+
+void Insertrecord(string name, int time)
 {
-	fstream fin("rank_classic.txt",ios::in);
-	ofstream fout("rank_classic.txt");
-	char c;
-	int line = 0;
-	while(fin.get(c))
-	{
-		if(c == "\n")
-			line++;
-	}
-    if(line<=1)
-	{
-			rank[line].TimeUsed=time;
-			rank[line].PlayerName=name;
-	}
-	elseif(line>1)
-	{
-			rank[line].TimeUsed=time;
-			rank[line].PlayerName=name;
-			sort(rank, rank +line, SortByTime);
-			for (int i = 0; i < line;i++){
-				fout <<i+1<<" "<<rank[i].PlayerName <<" "<<rank[i].TimeUsed<<endl;					
+	ifstream fin;
+	fin.open("rank_Classic.txt");
+	string line;
+	int count = 0;
+	int temp = 0;
+	while (getline(fin, line)){
+		istringstream line_in(line);
+		line_in >> temp;
+		line_in >> userrank[count].PlayerName;
+		line_in >> userrank[count].TimeUsed;
+		count += 1;
 	}
 	fin.close();
-	fout.close();
-}
-
-void Insertrecord(string name, int time) // check and adjust the rank
-{
 	ofstream fout;
 	fout.open("rank_Classic.txt");
 	if ( fout.fail() ){
-		cout << "Error in opening the file !" << endl;
-	}else{
-		if( time < rank[5].TimeUsed){
-			rank[5].TimeUsed=time;
-			rank[5].PlayerName=name;
-			sort(rank, rank +5, SortByTime);
-			for (int i = 0; i < 5;i++){
-				fout <<i+1<<" "<<rank[i].PlayerName <<" "<<rank[i].TimeUsed<<endl;
-		}
+		fout.open("rank_Classic.txt", ios::out);
 	}
-  }
+	if( time < userrank[4].TimeUsed ){
+		userrank[4].TimeUsed=time;
+		userrank[4].PlayerName=name;
+		sort(userrank, userrank + 5, SortByTime);
+		for (int i = 0; i < 5;i++){
+			fout <<i+1<<" "<<userrank[i].PlayerName <<" "<<userrank[i].TimeUsed<<endl;
+	}
+}
 	fout.close();
 }
 
