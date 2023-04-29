@@ -18,5 +18,6 @@ struct Record
 bool SortByTime(Record a, Record b);
 void Insertrecord(string name, int time);
 void Display();
+void K();
 
 #endif
