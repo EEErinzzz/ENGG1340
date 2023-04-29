@@ -17,10 +17,16 @@ int main()
   
 }
 */
-switch(Record.GameMode){
-		case "Classic":
-		case "Prey":
-		
+
+if(Record.GameMode=="Classic")
+{ switch(Record.size)
+{
+	case 20:
+	case 30:
+	case 40:
+}
+}
+if(Record.GameMode=="Prey"){
 }
 bool SortByTime(Record a, Record b)
 {
