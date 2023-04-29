@@ -44,11 +44,11 @@ void welcomepage()
 		refresh();
 	}
 	//printw("1. Start Game	2. Setting	Press any other key:Quit");
-	printw("┃   ┏━━━━━━━━━━━━━━━━┓            ┏━━━━━━━━━━━━━━━━┓            ┏━━━━━━━━━━━━━━━━┓                                        ┃")
+	printw("┃   ┏━━━━━━━━━━━━━━━━┓            ┏━━━━━━━━━━━━━━━━┓            ┏━━━━━━━━━━━━━━━━┓                                        ┃");
         refresh();
-	printw("┃   ┃  1. Start Game   ┃            ┃            ┃      2. Setting                ┃            ┃      Press any other key:Quit  ┃                                        ┃")
+	printw("┃   ┃  1. Start Game   ┃            ┃            ┃      2. Setting                ┃            ┃      Press any other key:Quit  ┃                                        ┃");
 	refresh();
-	printw("┃   ┗━━━━━━━━━━━━━━━━┛            ┗━━━━━━━━━━━━━━━━┛            ┗━━━━━━━━━━━━━━━━┛                                        ┃")
+	printw("┃   ┗━━━━━━━━━━━━━━━━┛            ┗━━━━━━━━━━━━━━━━┛            ┗━━━━━━━━━━━━━━━━┛                                        ┃");
 	refresh();
 	char choice = getch();
 	switch(choice)
