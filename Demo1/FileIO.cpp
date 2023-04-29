@@ -8,7 +8,7 @@
 
 using namespace std;
 bool SortByTime(Record a, Record b);
-void Insertrecord(string name, int time);
+void Insertrecord(string name, int time, string mode, int siz);
 void Display();
 void k();
 struct Record userrank[5] = {{"","",999,0}, {"","",999,0}, {"","",999,0}, {"","",999,0}, {"","",999,0}};
@@ -26,20 +26,20 @@ if(a.GameMode=="Classic")
 {
 	case 20:
 		//SortByTime(Record a, Record b)
-		Insertrecord(string a.PlayerName, int a.TimeUsed, string a.GameMode, int a.size);
+		Insertrecord(a.PlayerName, a.TimeUsed, a.GameMode, a.size);
 		Display();
 		break;
 		
 	
 	case 30:
 		//SortByTime(Record a, Record b)
-		Insertrecord(string a.PlayerName, int a.TimeUsed, string a.GameMode, int a.size);
+		Insertrecord(a.PlayerName, a.TimeUsed, a.GameMode, a.size);
 		Display();
 		break;
 			
 	case 40:
 		//SortByTime(Record a, Record b)
-		Insertrecord(string a.PlayerName, int a.TimeUsed, string a.GameMode, int a.size);
+		Insertrecord(a.PlayerName, a.TimeUsed, a.GameMode, a.size);
 		Display();
 		break;
 		}
@@ -50,19 +50,19 @@ if(a.GameMode=="Prey")
 {
 	case 20:
 		//SortByTime(Record a, Record b)
-		Insertrecord(string a.PlayerName, int a.TimeUsed, string a.GameMode, int a.size);
+		Insertrecord(a.PlayerName, a.TimeUsed, a.GameMode, a.size);
 		Display();
 		break;
 		
 	case 30:
 		//SortByTime(Record a, Record b)
-		Insertrecord(string a.PlayerName, int a.TimeUsed, string a.GameMode, int a.size);
+		Insertrecord(a.PlayerName, a.TimeUsed, a.GameMode, a.size);
 		Display();
 		break;
 		
 	case 40:
 		//SortByTime(Record a, Record b)
-		Insertrecord(string a.PlayerName, int a.TimeUsed, string a.GameMode, int a.size);
+		Insertrecord(a.PlayerName, a.TimeUsed, a.GameMode, a.size);
 		Display();
 		break;
 	}
