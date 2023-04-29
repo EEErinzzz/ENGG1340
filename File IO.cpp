@@ -17,7 +17,8 @@ int main()
   
 }
 */
-
+void  k()
+{
 if(Record.GameMode=="Classic")
 { switch(Record.size)
 {
@@ -57,7 +58,7 @@ if(Record.GameMode=="Prey")
 		Display()
 	}
 }
-
+}
 bool SortByTime(Record a, Record b)
 {
 	//if( a.TimeUsed != b.TimeUsed)
