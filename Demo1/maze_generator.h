@@ -9,7 +9,7 @@ typedef pair<int, int> PII;
 class maze_generation
 {
 public:
-	void maze_generator();
+	void maze_generator(string command);
 	//use prim algorithm to generator the maze
 
 	void maze_printer();
