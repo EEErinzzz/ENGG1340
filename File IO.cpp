@@ -10,6 +10,7 @@ using namespace std;
 bool SortByTime(Record a, Record b);
 void Insertrecord(string name, int time);
 void Display();
+void k();
 struct Record userrank[5] = {{"","",999,0}, {"","",999,0}, {"","",999,0}, {"","",999,0}, {"","",999,0}};
 /*
 int main()
