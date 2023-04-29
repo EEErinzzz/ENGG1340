@@ -78,13 +78,13 @@ void Game_Mode_Selection()
 	clear();
 	printw("This is game selection page\n");
 	refresh();
-	printw("1. Classic   2.Prey  3.Return   Press any other key:Quit");
+	printw("1. Classic   2.Searching  3.Return   Press any other key:Quit");
 	refresh();
 	ModeSelection = getch();
 	switch (ModeSelection)
 	{
 	case '1': record.GameMode = "Classic"; Game_Diffculty_Selection(); GamePlay_Classic(); break;
-	case '2': record.GameMode = "Prey"; break;
+	case '2': record.GameMode = "Searching"; GamePlay_Classic_Searching; GamePlay_Classic(); break;
 	case '3': welcomepage(); break;
 	}
 }
@@ -110,7 +110,7 @@ void GamePlay_Classic()
 	//X coordinate of exit (only check if the character has reached the last column)
 	maze_generation our_maze(record.size);
 	// create the object
-	our_maze.maze_generator();
+	our_maze.maze_generator("open");
 	// generate the maze
 	our_maze.player_insertion(player, py, px);
 	// Insert player to the maze
@@ -137,6 +137,47 @@ void GamePlay_Classic()
 	int seconds = static_cast<int>(elapsed_time.count());
 	record.TimeUsed = seconds;
 }
+
+void GamePlay_Searching()
+{
+	clear();
+	char player = 'X';
+	int px = 1;
+	int py = 2;
+	//Player's X and Y coordinate
+	int endx = record.size - 2;
+	//X coordinate of exit (only check if the character has reached the last column)
+	maze_generation our_maze(record.size);
+	// create the object
+	our_maze.maze_generator("close");
+	// generate the maze
+	our_maze.player_insertion(player, py, px);
+	// Insert player to the maze
+
+	char move;
+	auto start_time = std::chrono::system_clock::now();
+	while (px != endx)
+	{
+		clear();
+		our_maze.maze_printer();
+		// print the maze
+		cout << py << " " << px << endl;
+		move = getch();
+		switch (move)
+		{
+		case 'w': if (our_maze.check_wall(py - 1, px) && py > 1) { our_maze.update_player_location(py, px, py - 1, px); py -= 1; }  break;
+		case 'a': if (our_maze.check_wall(py, px - 1) && px > 1) { our_maze.update_player_location(py, px, py, px - 1); px -= 1; } break;
+		case 's': if (our_maze.check_wall(py + 1, px) && py < (record.size - 2)) { our_maze.update_player_location(py, px, py + 1, px); py += 1; } break;
+		case 'd': if (our_maze.check_wall(py, px + 1) && px < (record.size - 2)) { our_maze.update_player_location(py, px, py, px + 1); px += 1; }  break;
+		}
+	}
+	auto end_time = std::chrono::system_clock::now();
+	auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
+	int seconds = static_cast<int>(elapsed_time.count());
+	record.TimeUsed = seconds;
+}
+
+
 
 int main()
 {
