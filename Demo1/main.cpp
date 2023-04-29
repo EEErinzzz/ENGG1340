@@ -43,12 +43,7 @@ void welcomepage()
 		printw("\n");
 		refresh();
 	}
-	//printw("1. Start Game	2. Setting	Press any other key:Quit");
-	printw("┃   ┏━━━━━━━━━━━━━━━━┓            ┏━━━━━━━━━━━━━━━━┓            ┏━━━━━━━━━━━━━━━━┓                                        ┃");
-        refresh();
-	printw("┃   ┃  1. Start Game   ┃            ┃            ┃      2. Setting                ┃            ┃      Press any other key:Quit  ┃                                        ┃");
-	refresh();
-	printw("┃   ┗━━━━━━━━━━━━━━━━┛            ┗━━━━━━━━━━━━━━━━┛            ┗━━━━━━━━━━━━━━━━┛                                        ┃");
+	printw("1. Start Game	2. Setting	Press any other key:Quit");
 	refresh();
 	char choice = getch();
 	switch(choice)
