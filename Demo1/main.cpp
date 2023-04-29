@@ -53,6 +53,7 @@ void welcomepage()
 void GameSelection()
 {
 	char ModeSelection;
+	char SizeSelection;
 	clear();
 	printw("This is game selection page\n");
 	refresh();
@@ -64,6 +65,19 @@ void GameSelection()
 	case '1': record.GameMode = "Classic";break;
 	case '2': record.GameMode = "Prey"; break;
 	case '3': welcomepage(); break;
+	}
+	clear();
+	printw("Select the difficulty levels\n");
+	refresh();
+	printw("1. Easy(20*20)   2.Hard(30*30)  3.Insane(40*40)   4.Return    Press any other key:Quit");
+	refresh();
+	SizeSelection = getch();
+	switch(SizeSelection)
+	{
+	case '1': record.size = 20;break;
+	case '2': record.size = 30; break;
+	case '3': record.size = 40; break;
+	case '4': GameSelection(); break;
 	}
 	GamePlay();
 }
@@ -82,11 +96,11 @@ void GamePlay()
 {
 	clear();
 	char player = 'X';
-	int px= 1;
+	int px = 1;
 	int py = 2;
 	//Player's X and Y coordinate
-	int endx = 18;
-	int endy = 17;
+	int endx = record.size - 2;
+	int endy = record.size - 3;
 	//X, Y coordinate of exit
 	maze_generation our_maze(record.size);
 	// create the object
