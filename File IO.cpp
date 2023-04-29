@@ -18,45 +18,53 @@ int main()
   
 }
 */
-void  k()
+void  k(Record &a) 
+// pass the structure by reference
 {
-if(Record.GameMode=="Classic")
-{ switch(Record.size)
+if(a.GameMode=="Classic")
+{ switch(a.size)
 {
 	case 20:
-		SortByTime(Record a, Record b)
-		Insertrecord(string name, int time, string mode, int siz)
-		Display()
+		//SortByTime(Record a, Record b)
+		Insertrecord(string a.PlayerName, int a.TimeUsed, string a.GameMode, int a.size);
+		Display();
+		break;
+		
 	
 	case 30:
-		SortByTime(Record a, Record b)
-		Insertrecord(string name, int time, string mode, int siz)
-		Display()
+		//SortByTime(Record a, Record b)
+		Insertrecord(string a.PlayerName, int a.TimeUsed, string a.GameMode, int a.size);
+		Display();
+		break;
 			
 	case 40:
-		SortByTime(Record a, Record b)
-		Insertrecord(string name, int time, string mode, int siz)
-		Display()
+		//SortByTime(Record a, Record b)
+		Insertrecord(string a.PlayerName, int a.TimeUsed, string a.GameMode, int a.size);
+		Display();
+		break;
 		}
 }
 
-if(Record.GameMode=="Prey")
-{switch(Record.size)
+if(a.GameMode=="Prey")
+{switch(a.size)
 {
 	case 20:
-		SortByTime(Record a, Record b)
-		Insertrecord(string name, int time, string mode, int siz)
-		Display()
+		//SortByTime(Record a, Record b)
+		Insertrecord(string a.PlayerName, int a.TimeUsed, string a.GameMode, int a.size);
+		Display();
+		break;
 		
 	case 30:
-		SortByTime(Record a, Record b)
-		Insertrecord(string name, int time, string mode, int siz)
-		Display()
+		//SortByTime(Record a, Record b)
+		Insertrecord(string a.PlayerName, int a.TimeUsed, string a.GameMode, int a.size);
+		Display();
+		break;
 		
 	case 40:
-		SortByTime(Record a, Record b)
-		Insertrecord(string name, int time, string mode, int siz)
-		Display()
+		//SortByTime(Record a, Record b)
+		Insertrecord(string a.PlayerName, int a.TimeUsed, string a.GameMode, int a.size);
+		Display();
+		break;
 	}
 }
 }
