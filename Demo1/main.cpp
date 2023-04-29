@@ -24,21 +24,22 @@ struct Record
 */
 Record record;
 
-void GameSelection();
+void Game_Mode_Selection();
 void GameSetting();
-void GamePlay();
+void GamePlay_Classic();
+void GamePlay_Searching();
 void welcomepage()
 {
 	record.size = 20; //Default size
 	record.GameMode = "Game not started";
-	clear();	
+	clear();
 	initscr();
 	cbreak();
 	noecho();
 	keypad(stdscr, true);
 	printw("Game title here");
 	refresh();
-	for(int i = 1; i <= 10; i++) //A stuid way to print out multiple empty lines
+	for (int i = 1; i <= 10; i++) //A stuid way to print out multiple empty lines
 	{
 		printw("\n");
 		refresh();
@@ -46,43 +47,46 @@ void welcomepage()
 	printw("1. Start Game	2. Setting	Press any other key:Quit");
 	refresh();
 	char choice = getch();
-	switch(choice)
+	switch (choice)
 	{
-	case'1': GameSelection(); break;
+	case'1': Game_Mode_Selection(); break;
 	case'2':GameSetting(); break;
 	}
 }
-	
-void GameSelection()
+
+
+void Game_Diffculty_Selection()
 {
-	char ModeSelection;
 	char SizeSelection;
-	clear();
-	printw("This is game selection page\n");
-	refresh();
-	printw("1. Classic   2.Prey  3.Return   Press any other key:Quit");
-	refresh();
-	ModeSelection=getch();
-	switch(ModeSelection)
-	{
-	case '1': record.GameMode = "Classic";break;
-	case '2': record.GameMode = "Prey"; break;
-	case '3': welcomepage(); break;
-	}
 	clear();
 	printw("Select the difficulty levels\n");
 	refresh();
 	printw("1. Easy(20*20)   2.Hard(30*30)  3.Insane(40*40)   4.Return    Press any other key:Quit");
 	refresh();
 	SizeSelection = getch();
-	switch(SizeSelection)
+	switch (SizeSelection)
 	{
-	case '1': record.size = 20;break;
+	case '1': record.size = 20; break;
 	case '2': record.size = 30; break;
 	case '3': record.size = 40; break;
-	case '4': GameSelection(); break;
+	case '4': Game_Mode_Selection(); break;
 	}
-	GamePlay();
+}
+void Game_Mode_Selection()
+{
+	char ModeSelection;
+	clear();
+	printw("This is game selection page\n");
+	refresh();
+	printw("1. Classic   2.Prey  3.Return   Press any other key:Quit");
+	refresh();
+	ModeSelection = getch();
+	switch (ModeSelection)
+	{
+	case '1': record.GameMode = "Classic"; Game_Diffculty_Selection(); GamePlay_Classic(); break;
+	case '2': record.GameMode = "Prey"; break;
+	case '3': welcomepage(); break;
+	}
 }
 
 void GameSetting()
@@ -95,7 +99,7 @@ void GameSetting()
 	welcomepage();
 }
 
-void GamePlay()
+void GamePlay_Classic()
 {
 	clear();
 	char player = 'X';
@@ -110,7 +114,7 @@ void GamePlay()
 	// generate the maze
 	our_maze.player_insertion(player, py, px);
 	// Insert player to the maze
-	
+
 	char move;
 	auto start_time = std::chrono::system_clock::now();
 	while (px != endx)
@@ -122,14 +126,14 @@ void GamePlay()
 		move = getch();
 		switch (move)
 		{
-		case 'w': if (our_maze.check_wall(py -1, px) && py > 1) { our_maze.update_player_location(py, px, py -1, px); py -= 1; }  break;
-		case 'a': if (our_maze.check_wall(py, px-1) && px > 1) { our_maze.update_player_location(py, px, py, px - 1); px -= 1; } break;
+		case 'w': if (our_maze.check_wall(py - 1, px) && py > 1) { our_maze.update_player_location(py, px, py - 1, px); py -= 1; }  break;
+		case 'a': if (our_maze.check_wall(py, px - 1) && px > 1) { our_maze.update_player_location(py, px, py, px - 1); px -= 1; } break;
 		case 's': if (our_maze.check_wall(py + 1, px) && py < (record.size - 2)) { our_maze.update_player_location(py, px, py + 1, px); py += 1; } break;
-		case 'd': if (our_maze.check_wall(py, px + 1) && px < (record.size -2)) { our_maze.update_player_location(py, px, py, px + 1); px += 1; }  break;
+		case 'd': if (our_maze.check_wall(py, px + 1) && px < (record.size - 2)) { our_maze.update_player_location(py, px, py, px + 1); px += 1; }  break;
 		}
 	}
 	auto end_time = std::chrono::system_clock::now();
-	auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(end_time-start_time);
+	auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
 	int seconds = static_cast<int>(elapsed_time.count());
 	record.TimeUsed = seconds;
 }
@@ -139,8 +143,8 @@ int main()
 	system("clear");
 	welcomepage();
 	endwin();
-	cout<<"Testing the record system"<<endl;
-	cout<<"Gamemode:"<<record.GameMode<<endl;
+	cout << "Testing the record system" << endl;
+	cout << "Gamemode:" << record.GameMode << endl;
 	cout << "Size:" << record.size << endl;
 	cout << "Gametime: " << record.TimeUsed << endl;
 	k(record);
