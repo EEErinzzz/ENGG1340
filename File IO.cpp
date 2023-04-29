@@ -34,7 +34,7 @@ bool SortByTime(Record a, Record b)
 		return a.TimeUsed < b.TimeUsed;
 }
 
-void Insertrecord(string name, int time)
+void Insertrecord(string name, int time, string mode, int siz)
 {
 	ifstream fin;
 	fin.open("rank_Classic.txt");
@@ -54,6 +54,8 @@ void Insertrecord(string name, int time)
 	if ( fout.fail() ){
 		fout.open("rank_Classic.txt", ios::out);
 	}
+	fout<<" "<<"Mode : "<<mode<<"Size : "<<siz<<endl;
+
 	if( time < userrank[4].TimeUsed ){
 		userrank[4].TimeUsed=time;
 		userrank[4].PlayerName=name;
