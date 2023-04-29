@@ -13,6 +13,7 @@
 
 using namespace std;
 
+/*
 struct Record
 {
 	string GameMode;
@@ -20,7 +21,7 @@ struct Record
 	int TimeUsed;
 	int size;
 };
-
+*/
 Record record;
 
 void GameSelection();
@@ -112,7 +113,7 @@ void GamePlay()
 	
 	char move;
 	auto start_time = std::chrono::system_clock::now();
-	while (px != endx | py != endy)
+	while (px != endx)
 	{
 		clear();
 		our_maze.maze_printer();
