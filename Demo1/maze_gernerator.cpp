@@ -1,192 +1,121 @@
-//main.cpp: How to compile: g++ main.cpp maze_gernerator.cpp -o main -l ncurses
-
-#include<iostream>
-#include<fstream>
-#include<string>
-#include<ncurses.h>
-#include<unistd.h>
 #include "maze_generator.h"
-#include <ctime>
-#include <chrono>
-#include "rank.h"
-#include "recordsys.h"
+#include<time.h>
+#include <iostream>
+#include <cstdio>
+#include <algorithm>
+#include <ncurses.h>
 
-using namespace std;
 
-/*
-struct Record
+maze_generation::maze_generation(int s)
 {
-	string GameMode;
-	string PlayerName;
-	int TimeUsed;
-	int size;
-};
-*/
-Record record;
-
-void Game_Mode_Selection();
-void GameSetting();
-void GamePlay_Classic();
-void GamePlay_Searching();
-void welcomepage()
-{
-	record.size = 20; //Default size
-	record.GameMode = "Game not started";
-	clear();
-	initscr();
-	cbreak();
-	noecho();
-	keypad(stdscr, true);
-	printw("Game title here");
-	refresh();
-	for (int i = 1; i <= 10; i++) //A stuid way to print out multiple empty lines
+	//initialize all grids in the maze as wall
+	size = s;
+	maze.resize(size);
+	for (int j = 0; j < size; j++)
 	{
+		maze[j].resize(size);
+		for (int i = 0; i < size; i++)
+		{
+
+			maze[j][i] = wall;
+		}
+	}
+	// set the outmost periphery as the land to prevent from overriding the boundary
+	for (int i = 0; i < size; i++) {
+		maze[i][0] = 1;
+		maze[0][i] = 1;
+		maze[size - 1][i] = 1;
+		maze[i][size - 1] = 1;
+	}
+
+}
+
+void maze_generation::maze_generator(string command)
+{
+	frontiers.push_back({ 2,2 });
+	// randomly choose a grid as the initial point
+
+	while (frontiers.size())
+	{
+		srand(time(0));
+		int r = rand() % frontiers.size();
+		int cur_y = frontiers[r].first;
+		int cur_x = frontiers[r].second;
+		
+		// judge whether the surounding(up,down,left and right) of cur_ is connected by land
+		int count = 0;
+		for (int i = cur_y - 1; i < cur_y + 2; i++) {
+			for (int j = cur_x - 1; j < cur_x + 2; j++) {
+				if (abs(cur_y - i) + abs(cur_x - j) == 1 && maze[i][j] > 0) {
+					++count;
+				}
+			}
+		}
+		
+		if (count <= 1)
+		{
+			maze[cur_y][cur_x] = 1;
+			// make it the land
+
+			// add the frontiers of the new land to the vector frontiers
+			for (int i = cur_y - 1; i < cur_y + 2; i++)
+			{
+				for (int j = cur_x - 1; j < cur_x + 2; j++)
+				{
+					if (abs(cur_y - i) + abs(cur_x - j) == 1 && maze[i][j] == 0) frontiers.push_back({ i,j });
+				}
+			}
+		}
+		
+		frontiers.erase(frontiers.begin()+r);
+			// since it is already marked as land, it should be removed from the frontiers vector
+	}
+	//set the exit and entry in classic mode
+	if (command == open)
+	{ 
+		maze[2][1] = 1;
+		for (int i = size - 3; i >= 0; i--) {
+			if (maze[i][size - 3] == 1)
+			{
+				maze[i][size - 2] = 1;
+				break;
+			}
+		}
+	}
+	
+}
+
+void maze_generation::maze_printer()
+{
+	for (int i = 0; i < size; i++) 
+	{
+		for (int j = 0; j < size; j++)
+		{
+			if (maze[i][j] == 'X') { printw("X"); refresh(); continue; }
+			if (maze[i][j] == 1) { printw(" "); refresh(); }
+			else { addch(' ' | A_REVERSE); } ;
+		}
 		printw("\n");
 		refresh();
 	}
-	printw("1. Start Game	2. Setting	Press any other key:Quit");
-	refresh();
-	char choice = getch();
-	switch (choice)
-	{
-	case'1': Game_Mode_Selection(); break;
-	case'2':GameSetting(); break;
-	}
 }
 
-
-void Game_Diffculty_Selection()
+void maze_generation::player_insertion(char player, int y, int x)
 {
-	char SizeSelection;
-	clear();
-	printw("Select the difficulty levels\n");
-	refresh();
-	printw("1. Easy(20*20)   2.Hard(30*30)  3.Insane(40*40)   4.Return    Press any other key:Quit");
-	refresh();
-	SizeSelection = getch();
-	switch (SizeSelection)
-	{
-	case '1': record.size = 20; break;
-	case '2': record.size = 30; break;
-	case '3': record.size = 40; break;
-	case '4': Game_Mode_Selection(); break;
-	}
-}
-void Game_Mode_Selection()
-{
-	char ModeSelection;
-	clear();
-	printw("This is game selection page\n");
-	refresh();
-	printw("1. Classic   2.Searching  3.Return   Press any other key:Quit");
-	refresh();
-	ModeSelection = getch();
-	switch (ModeSelection)
-	{
-	case '1': record.GameMode = "Classic"; Game_Diffculty_Selection(); GamePlay_Classic(); break;
-	case '2': record.GameMode = "Searching"; GamePlay_Classic_Searching; GamePlay_Classic(); break;
-	case '3': welcomepage(); break;
-	}
+	maze[y][x] = player; 
+	//maze: a int vector: char player --(casting)--> int
 }
 
-void GameSetting()
+void maze_generation::update_player_location(int y1, int x1, int y2, int x2)
 {
-
-	clear();
-	printw("This is the game setting page");
-	refresh();
-	sleep(3);
-	welcomepage();
+	maze[y1][x1] =  1;
+	maze[y2][x2] = 'X';
 }
 
-void GamePlay_Classic()
+bool maze_generation::check_wall(int y, int x)
 {
-	clear();
-	char player = 'X';
-	int px = 1;
-	int py = 2;
-	//Player's X and Y coordinate
-	int endx = record.size - 2;
-	//X coordinate of exit (only check if the character has reached the last column)
-	maze_generation our_maze(record.size);
-	// create the object
-	our_maze.maze_generator("open");
-	// generate the maze
-	our_maze.player_insertion(player, py, px);
-	// Insert player to the maze
-
-	char move;
-	auto start_time = std::chrono::system_clock::now();
-	while (px != endx)
-	{
-		clear();
-		our_maze.maze_printer();
-		// print the maze
-		cout << py << " " << px << endl;
-		move = getch();
-		switch (move)
-		{
-		case 'w': if (our_maze.check_wall(py - 1, px) && py > 1) { our_maze.update_player_location(py, px, py - 1, px); py -= 1; }  break;
-		case 'a': if (our_maze.check_wall(py, px - 1) && px > 1) { our_maze.update_player_location(py, px, py, px - 1); px -= 1; } break;
-		case 's': if (our_maze.check_wall(py + 1, px) && py < (record.size - 2)) { our_maze.update_player_location(py, px, py + 1, px); py += 1; } break;
-		case 'd': if (our_maze.check_wall(py, px + 1) && px < (record.size - 2)) { our_maze.update_player_location(py, px, py, px + 1); px += 1; }  break;
-		}
-	}
-	auto end_time = std::chrono::system_clock::now();
-	auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
-	int seconds = static_cast<int>(elapsed_time.count());
-	record.TimeUsed = seconds;
-}
-
-void GamePlay_Searching()
-{
-	clear();
-	char player = 'X';
-	int px = 1;
-	int py = 2;
-	//Player's X and Y coordinate
-	int endx = record.size - 2;
-	//X coordinate of exit (only check if the character has reached the last column)
-	maze_generation our_maze(record.size);
-	// create the object
-	our_maze.maze_generator("close");
-	// generate the maze
-	our_maze.player_insertion(player, py, px);
-	// Insert player to the maze
-
-	char move;
-	auto start_time = std::chrono::system_clock::now();
-	while (px != endx)
-	{
-		clear();
-		our_maze.maze_printer();
-		// print the maze
-		cout << py << " " << px << endl;
-		move = getch();
-		switch (move)
-		{
-		case 'w': if (our_maze.check_wall(py - 1, px) && py > 1) { our_maze.update_player_location(py, px, py - 1, px); py -= 1; }  break;
-		case 'a': if (our_maze.check_wall(py, px - 1) && px > 1) { our_maze.update_player_location(py, px, py, px - 1); px -= 1; } break;
-		case 's': if (our_maze.check_wall(py + 1, px) && py < (record.size - 2)) { our_maze.update_player_location(py, px, py + 1, px); py += 1; } break;
-		case 'd': if (our_maze.check_wall(py, px + 1) && px < (record.size - 2)) { our_maze.update_player_location(py, px, py, px + 1); px += 1; }  break;
-		}
-	}
-	auto end_time = std::chrono::system_clock::now();
-	auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
-	int seconds = static_cast<int>(elapsed_time.count());
-	record.TimeUsed = seconds;
-}
-
-
-
-int main()
-{
-	system("clear");
-	welcomepage();
-	endwin();
-	cout << "Testing the record system" << endl;
-	cout << "Gamemode:" << record.GameMode << endl;
-	cout << "Size:" << record.size << endl;
-	cout << "Gametime: " << record.TimeUsed << endl;
-	k(record);
+	if (maze[y][x] == 1)
+		return true;
+	else
+		return false;
 }
