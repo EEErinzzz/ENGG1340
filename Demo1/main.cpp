@@ -8,6 +8,8 @@
 #include "maze_generator.h"
 #include <ctime>
 #include <chrono>
+#include "rank.h"
+#include "recordsys.h"
 
 using namespace std;
 
@@ -100,8 +102,7 @@ void GamePlay()
 	int py = 2;
 	//Player's X and Y coordinate
 	int endx = record.size - 2;
-	int endy = record.size - 3;
-	//X, Y coordinate of exit
+	//X coordinate of exit (only check if the character has reached the last column)
 	maze_generation our_maze(record.size);
 	// create the object
 	our_maze.maze_generator();
@@ -141,4 +142,5 @@ int main()
 	cout<<"Gamemode:"<<record.GameMode<<endl;
 	cout << "Size:" << record.size << endl;
 	cout << "Gametime: " << record.TimeUsed << endl;
+	k(record);
 }
