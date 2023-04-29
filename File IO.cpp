@@ -17,8 +17,11 @@ int main()
   
 }
 */
-
-
+switch(Record.GameMode){
+		case "Classic":
+		case "Prey":
+		
+}
 bool SortByTime(Record a, Record b)
 {
 	//if( a.TimeUsed != b.TimeUsed)
