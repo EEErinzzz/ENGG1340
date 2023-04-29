@@ -89,7 +89,7 @@ void maze_generation::maze_printer()
 		{
 			if (maze[i][j] == 'X') { printw("X"); refresh(); continue; }
 			if (maze[i][j] == 1) { printw(" "); refresh(); }
-			else { printw("O"); refresh(); };
+			else { addch(' ' | A_REVERSE); } ;
 		}
 		printw("\n");
 		refresh();
