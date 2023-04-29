@@ -84,7 +84,7 @@ void Game_Mode_Selection()
 	switch (ModeSelection)
 	{
 	case '1': record.GameMode = "Classic"; Game_Diffculty_Selection(); GamePlay_Classic(); break;
-	case '2': record.GameMode = "Searching"; GamePlay_Classic_Searching; GamePlay_Classic(); break;
+	case '2': record.GameMode = "Searching"; Game_Diffculty_Selection(); GamePlay_Searching(); break;
 	case '3': welcomepage(); break;
 	}
 }
