@@ -124,8 +124,8 @@ void GamePlay()
 		{
 		case 'w': if (our_maze.check_wall(py -1, px) && py > 1) { our_maze.update_player_location(py, px, py -1, px); py -= 1; }  break;
 		case 'a': if (our_maze.check_wall(py, px-1) && px > 1) { our_maze.update_player_location(py, px, py, px - 1); px -= 1; } break;
-		case 's': if (our_maze.check_wall(py + 1, px) %% py < (record.size - 2) { our_maze.update_player_location(py, px, py + 1, px); py += 1; } break;
-		case 'd': if (our_maze.check_wall(py, px + 1) %% px < (record.size -2) { our_maze.update_player_location(py, px, py, px + 1); px += 1; }  break;
+		case 's': if (our_maze.check_wall(py + 1, px) && py < (record.size - 2)) { our_maze.update_player_location(py, px, py + 1, px); py += 1; } break;
+		case 'd': if (our_maze.check_wall(py, px + 1) && px < (record.size -2)) { our_maze.update_player_location(py, px, py, px + 1); px += 1; }  break;
 		}
 	}
 	auto end_time = std::chrono::system_clock::now();
