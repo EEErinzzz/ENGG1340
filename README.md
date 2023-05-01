@@ -1,12 +1,14 @@
 # ENGG1340
 ### Group member
-ZHOU
+ZHOU Ziyue
+Yang Haozhe
+Zhong Qin
 
-###Installation environment
+### Installation environment
 
-###Feature 
+### Feature 
 
-###Coding requirement it satisfies
+### Coding requirement it satisfies
 
 
-###quick guide
+### quick guide
