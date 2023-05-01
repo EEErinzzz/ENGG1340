@@ -1,4 +1,4 @@
-//main.cpp: How to compile: g++ main.cpp maze_gernerator.cpp -o main -l ncurses
+//main.cpp: How to compile: g++ main.cpp maze_gernerator.cpp -o main -l ncursesw
 
 #include<iostream>
 #include<fstream>
