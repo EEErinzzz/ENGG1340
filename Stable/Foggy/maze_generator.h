@@ -18,6 +18,7 @@ public:
 	void maze_printer_Foggy(int sight);
 	maze_generation(int s);
 	// a constructor 
+	// int s is the size desired
 	// initialize all grids to be the wall
 	// set the outmost periphery as the land
 	void player_insertion(char player, int y, int x);
