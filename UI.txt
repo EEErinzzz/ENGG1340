@@ -25,3 +25,13 @@ void welcomepage()
         printw("\n┃  1. Start Game ┃            ┃   2. Setting   ┃            ┃ Press any other key:Quit ┃");
         printw("\n┗━━━━━━━━━━━━━━━━┛            ┗━━━━━━━━━━━━━━━━┛            ┗━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 }
+
+
+#include <sys/ioctl.h>
+
+struct winsize w;
+ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+        
+if(w.ws_row<45||w.ws_col<45){
+        printw("Please enlarge the screen size to larger than 45x45\n");
+        refresh();};
