@@ -100,6 +100,7 @@ void maze_generation::maze_printer()
 	}
 }
 void maze_generation::maze_printer_Foggy(int sight)
+//input is the sight that the player have. Player can only see the maze within a circle whose radius is the sight and the center is the player position
 {
 	for (int i = 1; i < size; i++)
 	{
