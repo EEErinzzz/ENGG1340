@@ -119,3 +119,7 @@ bool maze_generation::check_wall(int y, int x)
 	else
 		return false;
 }
+void maze_generation::just_update_player(int y1, int x1, int y2, int x2)
+{
+	mvaddch(y1, x1, ' ');
+	mvaddch(y2, x2, 'X');
