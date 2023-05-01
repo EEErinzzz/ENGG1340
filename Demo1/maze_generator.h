@@ -22,6 +22,7 @@ public:
 	void player_insertion(char player, int y, int x);
 	void update_player_location(int y1, int x1, int y2, int x2); //This function will update the player's location on the maze
 	bool check_wall(int y, int x);
+	void just_update_player(int y1, int x1, int y2, int x2);
 private:
 	int size;
 	vector<vector<int>> maze;
