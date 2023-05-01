@@ -139,6 +139,7 @@ void GamePlay_Classic()
 }
 
 void GamePlay_Foggy()
+//function controlling the game in foggy mode
 {
 	clear();
 	char player = 'X';
@@ -175,7 +176,9 @@ void GamePlay_Foggy()
 		case 'd': if (our_maze.check_wall(py, px + 1) && px < (record.size - 2)) { our_maze.update_player_location(py, px, py, px + 1); px += 1; }  break;
 		}
 		if (move == '+' && sight < record.size / 3) sight += 2;
+		// press '+' to increase the sight
 		else if (move == '-' && sight > 0) sight -= 2;
+		// pree '-' to decrease the sight
 	}
 	auto end_time = std::chrono::system_clock::now();
 	auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
