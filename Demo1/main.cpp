@@ -10,6 +10,7 @@
 #include <chrono>
 #include "rank.h"
 #include "recordsys.h"
+#include<locale.h>
 
 using namespace std;
 
@@ -30,6 +31,7 @@ void GamePlay_Classic();
 void GamePlay_Searching();
 void welcomepage()
 {
+	setlocale(LC_ALL, "");
 	record.size = 20; //Default size
 	record.GameMode = "Game not started";
 	clear();
@@ -37,14 +39,27 @@ void welcomepage()
 	cbreak();
 	noecho();
 	keypad(stdscr, true);
-	printw("Game title here");
-	refresh();
-	for (int i = 1; i <= 10; i++) //A stuid way to print out multiple empty lines
-	{
-		printw("\n");
-		refresh();
-	}
-	printw("1. Start Game	2. Setting	Press any other key:Quit");
+	printw("\u2588    \u2588   \u2588\u2588   \u2588\u2588\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2588\u2588\n");
+        printw("\u2588\u2588  \u2588\u2588  \u2588  \u2588      \u2588  \u2588      \n");
+        printw("\u2588 \u2588\u2588 \u2588 \u2588    \u2588    \u2588   \u2588\u2588\u2588\u2588\u2588  \n");
+        printw("\u2588    \u2588 \u2588\u2588\u2588\u2588\u2588\u2588   \u2588    \u2588      \n");
+        printw("\u2588    \u2588 \u2588    \u2588  \u2588     \u2588      \n");
+        printw("\u2588    \u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2588\u2588 \n \n");
+        printw("\u2588\u2588\u2588\u2588\u2588\u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \u2588       \u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588 \n");
+        printw("\u2588       \u2588  \u2588  \u2588    \u2588 \u2588      \u2588    \u2588 \u2588    \u2588 \u2588      \n");
+        printw("\u2588\u2588\u2588\u2588\u2588    \u2588\u2588   \u2588    \u2588 \u2588      \u2588    \u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \n");
+        printw("\u2588        \u2588\u2588   \u2588\u2588\u2588\u2588\u2588  \u2588      \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \u2588      \n");
+        printw("\u2588       \u2588  \u2588  \u2588      \u2588      \u2588    \u2588 \u2588   \u2588  \u2588      \n");
+        printw("\u2588\u2588\u2588\u2588\u2588\u2588 \u2588    \u2588 \u2588      \u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588  \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588\u2588 \n \n");
+        printw("  \u2588\u2588   \u2588\u2588\u2588\u2588\u2588  \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588\u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588 \n");
+        printw(" \u2588  \u2588  \u2588    \u2588 \u2588    \u2588 \u2588      \u2588\u2588   \u2588   \u2588   \u2588    \u2588 \u2588    \u2588 \u2588      \n");
+        printw("\u2588    \u2588 \u2588    \u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \u2588 \u2588  \u2588   \u2588   \u2588    \u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \n");
+        printw("\u2588\u2588\u2588\u2588\u2588\u2588 \u2588    \u2588 \u2588    \u2588 \u2588      \u2588  \u2588 \u2588   \u2588   \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \u2588      \n");
+        printw("\u2588    \u2588 \u2588    \u2588  \u2588  \u2588  \u2588      \u2588   \u2588\u2588   \u2588   \u2588    \u2588 \u2588   \u2588  \u2588      \n");
+        printw("\u2588    \u2588 \u2588\u2588\u2588\u2588\u2588    \u2588\u2588   \u2588\u2588\u2588\u2588\u2588\u2588 \u2588    \u2588   \u2588    \u2588\u2588\u2588\u2588  \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588\u2588\n");
+        printw("\n┏━━━━━━━━━━━━━━━━┓            ┏━━━━━━━━━━━━━━━━┓            ┏━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        printw("\n┃  1. Start Game ┃            ┃   2. Setting   ┃            ┃ Press any other key:Quit ┃");
+        printw("\n┗━━━━━━━━━━━━━━━━┛            ┗━━━━━━━━━━━━━━━━┛            ┗━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 	refresh();
 	char choice = getch();
 	switch (choice)
