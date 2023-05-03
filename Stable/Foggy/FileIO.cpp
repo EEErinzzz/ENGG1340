@@ -80,7 +80,6 @@ void Insertrecord(string name, int time, string mode, int siz)
 	fin.open("rank_Classic.txt");
 	string line;
 	int count = 0;
-	int temp = 0;
 	while (getline(fin, line)){
 		istringstream line_in(line);
 		line_in >> userrank[count].PlayerName;
