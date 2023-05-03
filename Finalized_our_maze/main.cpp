@@ -237,7 +237,6 @@ int main()
 	system("clear");
 	welcomepage();
 	endwin();
-	cout << "Testing the record system" << endl;
 	cout << "Gamemode:" << record.GameMode << endl;
 	cout << "Size:" << record.size << endl;
 	cout << "Gametime: " << record.TimeUsed << endl;
