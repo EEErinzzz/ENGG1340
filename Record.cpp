@@ -23,28 +23,28 @@ void  k(Record &b)
 {
 	auto * a = new Record;
 	a = &b;
-if(a->GameMode=="Classic")
-{ switch(a->size)
-{
-	case 20:
-		//SortByTime(Record a, Record b)
-		Insertrecord(a);
-		Display();
-		break;
-		
-	
-	case 30:
-		//SortByTime(Record a, Record b)
-		Insertrecord(a);
-		Display();
-		break;
-			
-	case 40:
-		//SortByTime(Record a, Record b)
-		Insertrecord(a);
-		Display();
-		break;
-		}
+	if(a->GameMode=="Classic")
+	{ switch(a->size)
+	{
+		case 20:
+			//SortByTime(Record a, Record b)
+			Insertrecord(a);
+			Display();
+			break;
+
+
+		case 30:
+			//SortByTime(Record a, Record b)
+			Insertrecord(a);
+			Display();
+			break;
+
+		case 40:
+			//SortByTime(Record a, Record b)
+			Insertrecord(a);
+			Display();
+			break;
+			}
 }
 /*
 if(a->GameMode=="Prey")
