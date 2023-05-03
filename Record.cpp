@@ -46,7 +46,7 @@ if(a->GameMode=="Classic")
 		break;
 		}
 }
-
+/*
 if(a->GameMode=="Prey")
 {switch(a->size)
 {
@@ -68,7 +68,7 @@ if(a->GameMode=="Prey")
 		Display();
 		break;
 	}
-
+*/
 delete a;
 }
 }
