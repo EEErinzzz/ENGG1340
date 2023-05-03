@@ -10,6 +10,7 @@
 #include <chrono>
 #include "rank.h"
 #include "recordsys.h"
+#include<locale.h>
 
 using namespace std;
 
@@ -25,11 +26,12 @@ struct Record
 Record record;
 
 void Game_Mode_Selection();
-void GameSetting();
+void GameSetting(int mode);
 void GamePlay_Classic();
 void GamePlay_Foggy();
 void welcomepage()
 {
+	setlocale(LC_ALL, "");
 	record.size = 20; //Default size
 	record.GameMode = "Game not started";
 	clear();
@@ -37,40 +39,54 @@ void welcomepage()
 	cbreak();
 	noecho();
 	keypad(stdscr, true);
-	printw("Game title here");
+	curs_set(0);
 	refresh();
-	for (int i = 1; i <= 10; i++) //A stuid way to print out multiple empty lines
-	{
-		printw("\n");
-		refresh();
-	}
-	printw("1. Start Game	2. Setting	Press any other key:Quit");
+	printw("\u2588    \u2588   \u2588\u2588   \u2588\u2588\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2588\u2588\n");
+	printw("\u2588\u2588  \u2588\u2588  \u2588  \u2588      \u2588  \u2588      \n");
+	printw("\u2588 \u2588\u2588 \u2588 \u2588    \u2588    \u2588   \u2588\u2588\u2588\u2588\u2588  \n");
+	printw("\u2588    \u2588 \u2588\u2588\u2588\u2588\u2588\u2588   \u2588    \u2588      \n");
+	printw("\u2588    \u2588 \u2588    \u2588  \u2588     \u2588      \n");
+	printw("\u2588    \u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2588\u2588 \n \n");
+	printw("\u2588\u2588\u2588\u2588\u2588\u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \u2588       \u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588 \n");
+	printw("\u2588       \u2588  \u2588  \u2588    \u2588 \u2588      \u2588    \u2588 \u2588    \u2588 \u2588      \n");
+	printw("\u2588\u2588\u2588\u2588\u2588    \u2588\u2588   \u2588    \u2588 \u2588      \u2588    \u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \n");
+	printw("\u2588        \u2588\u2588   \u2588\u2588\u2588\u2588\u2588  \u2588      \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \u2588      \n");
+	printw("\u2588       \u2588  \u2588  \u2588      \u2588      \u2588    \u2588 \u2588   \u2588  \u2588      \n");
+	printw("\u2588\u2588\u2588\u2588\u2588\u2588 \u2588    \u2588 \u2588      \u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588  \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588\u2588 \n \n");
+	printw("  \u2588\u2588   \u2588\u2588\u2588\u2588\u2588  \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588\u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588 \n");
+	printw(" \u2588  \u2588  \u2588    \u2588 \u2588    \u2588 \u2588      \u2588\u2588   \u2588   \u2588   \u2588    \u2588 \u2588    \u2588 \u2588      \n");
+	printw("\u2588    \u2588 \u2588    \u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \u2588 \u2588  \u2588   \u2588   \u2588    \u2588 \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \n");
+	printw("\u2588\u2588\u2588\u2588\u2588\u2588 \u2588    \u2588 \u2588    \u2588 \u2588      \u2588  \u2588 \u2588   \u2588   \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588  \u2588      \n");
+	printw("\u2588    \u2588 \u2588    \u2588  \u2588  \u2588  \u2588      \u2588   \u2588\u2588   \u2588   \u2588    \u2588 \u2588   \u2588  \u2588      \n");
+	printw("\u2588    \u2588 \u2588\u2588\u2588\u2588\u2588    \u2588\u2588   \u2588\u2588\u2588\u2588\u2588\u2588 \u2588    \u2588   \u2588    \u2588\u2588\u2588\u2588  \u2588    \u2588 \u2588\u2588\u2588\u2588\u2588\u2588\n");
+	printw("\n\u250F\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2513            \u250F\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2513            \u250F\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2513");
+	printw("\n\u2503 1. Start Game  \u2503                                                    \u2503 Press any other key:Quit \u2503");
+	printw("\n\u2517\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u251B            \u2517\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u251B            \u2517\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u251B");
 	refresh();
 	char choice = getch();
 	switch (choice)
 	{
 	case'1': Game_Mode_Selection(); break;
-	case'2':GameSetting(); break;
 	}
 }
-
-
-void Game_Diffculty_Selection()
+void Game_Diffculty_Selection(int mode)
 {
 	char SizeSelection;
 	clear();
 	printw("Select the difficulty levels\n");
 	refresh();
-	printw("1. Easy(20*20)   2.Hard(30*30)  3.Insane(40*40)   4.Return    Press any other key:Quit");
+	printw("1. Easy(20*20)   2.Hard(30*30)  3.Insane(40*40) 4.Custom  5.Return    Press any other key:Quit");
 	refresh();
 	SizeSelection = getch();
 	switch (SizeSelection)
 	{
-	case '1': record.size = 20; break;
-	case '2': record.size = 30; break;
-	case '3': record.size = 40; break;
-	case '4': Game_Mode_Selection(); break;
+	case '1': record.size = 20; if (mode == 1)GamePlay_Classic(); else GamePlay_Foggy(); break;
+	case '2': record.size = 30; if (mode == 1)GamePlay_Classic(); else GamePlay_Foggy(); break;
+	case '3': record.size = 40; if (mode == 1)GamePlay_Classic(); else GamePlay_Foggy(); break;
+	case '5': Game_Mode_Selection(); break;
+	case '4': GameSetting(mode); break;
 	}
+
 }
 void Game_Mode_Selection()
 {
@@ -83,20 +99,42 @@ void Game_Mode_Selection()
 	ModeSelection = getch();
 	switch (ModeSelection)
 	{
-	case '1': record.GameMode = "Classic"; Game_Diffculty_Selection(); GamePlay_Classic(); break;
-	case '2': record.GameMode = "Foggy"; Game_Diffculty_Selection(); GamePlay_Foggy(); break;
+	case '1': record.GameMode = "Classic"; Game_Diffculty_Selection(1); break;
+	case '2': record.GameMode = "Foggy"; Game_Diffculty_Selection(2); break;
 	case '3': welcomepage(); break;
 	}
 }
 
-void GameSetting()
+void GameSetting(int mode)
 {
-
-	clear();
-	printw("This is the game setting page");
-	refresh();
-	sleep(3);
-	welcomepage();
+	endwin();
+	bool exit = 1;
+	while (exit)
+	{
+		system("clear");
+		cout << "This is the game setting page\nRecord system will be disable if you changed the size\n";
+		printf("\n\n1. Current Size: %d", record.size);
+		printf("\n2. Return");
+		cout << "\n\n Please enter your choice: ";
+		int choice = 0;
+		cin >> choice;
+		switch (choice)
+		{
+		case 1: cout << "\r Current Size: " << record.size << " --> "; cin >> record.size; break;
+		case 2: exit = 0; break;
+		default: cout << "\r Invaild Input! Please enter again";
+		}
+	}
+	initscr();
+	cbreak();
+	noecho();
+	keypad(stdscr, true);
+	curs_set(0);
+	if (mode == 1)
+		GamePlay_Classic();
+	else
+		if (mode == 2)
+			GamePlay_Foggy();
 }
 
 void GamePlay_Classic()
@@ -117,19 +155,16 @@ void GamePlay_Classic()
 
 	char move;
 	auto start_time = std::chrono::system_clock::now();
+	our_maze.maze_printer();
 	while (px != endx)
 	{
-		clear();
-		our_maze.maze_printer();
-		// print the maze
-		cout << py << " " << px << endl;
 		move = getch();
 		switch (move)
 		{
-		case 'w': if (our_maze.check_wall(py - 1, px) && py > 1) { our_maze.update_player_location(py, px, py - 1, px); py -= 1; }  break;
-		case 'a': if (our_maze.check_wall(py, px - 1) && px > 1) { our_maze.update_player_location(py, px, py, px - 1); px -= 1; } break;
-		case 's': if (our_maze.check_wall(py + 1, px) && py < (record.size - 2)) { our_maze.update_player_location(py, px, py + 1, px); py += 1; } break;
-		case 'd': if (our_maze.check_wall(py, px + 1) && px < (record.size - 2)) { our_maze.update_player_location(py, px, py, px + 1); px += 1; }  break;
+		case 'w': if (our_maze.check_wall(py - 1, px) && py > 1) { our_maze.update_player_location(py, px, py - 1, px); our_maze.just_update_player(py, px, py - 1, px); py -= 1; }  break;
+		case 'a': if (our_maze.check_wall(py, px - 1) && px > 1) { our_maze.update_player_location(py, px, py, px - 1); our_maze.just_update_player(py, px, py, px - 1); px -= 1; } break;
+		case 's': if (our_maze.check_wall(py + 1, px) && py < (record.size - 2)) { our_maze.update_player_location(py, px, py + 1, px); our_maze.just_update_player(py, px, py + 1, px); py += 1; } break;
+		case 'd': if (our_maze.check_wall(py, px + 1) && px < (record.size - 2)) { our_maze.update_player_location(py, px, py, px + 1); our_maze.just_update_player(py, px, py, px + 1); px += 1; }  break;
 		}
 	}
 	auto end_time = std::chrono::system_clock::now();
@@ -162,11 +197,10 @@ void GamePlay_Foggy()
 	while (px != endx)
 	{
 		clear();
-		
+
 
 		our_maze.maze_printer_Foggy(sight);
 		// print the maze
-		cout << py << " " << px << endl;
 		move = getch();
 		switch (move)
 		{
