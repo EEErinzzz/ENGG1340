@@ -11,6 +11,7 @@
 #include "rank.h"
 #include "recordsys.h"
 #include<locale.h>
+#include <sys/ioctl.h>
 
 using namespace std;
 
@@ -41,6 +42,11 @@ void welcomepage()
 	keypad(stdscr, true);
 	curs_set(0);
 	refresh();
+	struct winsize w;
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	if(w.ws_row<45||w.ws_col<45){
+        printw("Please enlarge the screen size to larger than 45x45\n");
+        refresh();};
 	printw("\u2588    \u2588   \u2588\u2588   \u2588\u2588\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2588\u2588\n");
 	printw("\u2588\u2588  \u2588\u2588  \u2588  \u2588      \u2588  \u2588      \n");
 	printw("\u2588 \u2588\u2588 \u2588 \u2588    \u2588    \u2588   \u2588\u2588\u2588\u2588\u2588  \n");
