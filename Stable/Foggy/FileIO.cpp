@@ -83,7 +83,6 @@ void Insertrecord(string name, int time, string mode, int siz)
 	int temp = 0;
 	while (getline(fin, line)){
 		istringstream line_in(line);
-		line_in >> temp;
 		line_in >> userrank[count].PlayerName;
 		line_in >> userrank[count].TimeUsed;
 		count += 1;
@@ -94,7 +93,6 @@ void Insertrecord(string name, int time, string mode, int siz)
 	if ( fout.fail() ){
 		fout.open("rank_Classic.txt", ios::out);
 	}
-	fout<<" "<<"Mode : "<<mode<<"Size : "<<siz<<endl;
 
 	if( time < userrank[4].TimeUsed ){
 		userrank[4].TimeUsed=time;
