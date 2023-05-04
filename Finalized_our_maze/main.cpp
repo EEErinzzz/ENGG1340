@@ -252,6 +252,7 @@ int main()
 	cout << "Size:" << setw(25)<< right << record.size << endl;
 	cout << "Gametime:" << setw(21)<< right << record.TimeUsed << endl;
 	cout << "------------------------------" << endl;
+	cout << "Top 5 records in " << record.GameMode;
 	k(record);
 	Display(record.size);
 	cout << "------------------------------" << endl;
