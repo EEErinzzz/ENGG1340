@@ -31,22 +31,16 @@ if(a.GameMode=="Classic")
 { switch(a.size)
 {
 	case 20:
-		//SortByTime(Record a, Record b)
 		Insertrecord_20(a.PlayerName, a.TimeUsed, a.GameMode, a.size);
-		Display_20();
 		break;
 
 
 	case 30:
-		//SortByTime(Record a, Record b)
 		Insertrecord_30(a.PlayerName, a.TimeUsed, a.GameMode, a.size);
-		Display_30();
 		break;
 
 	case 40:
-		//SortByTime(Record a, Record b)
 		Insertrecord_40(a.PlayerName, a.TimeUsed, a.GameMode, a.size);
-		Display_40();
 		break;
 		}
 }
