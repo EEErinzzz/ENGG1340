@@ -17,7 +17,7 @@ struct Record
 
 bool SortByTime(Record a, Record b);
 void Insertrecord(string name, int time, string mode, int siz);
-void Display();
+void Display(int size);
 void k(Record &a);
 
 #endif
