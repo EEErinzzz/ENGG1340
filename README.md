@@ -93,6 +93,14 @@ Gametime: 22
 ...
 ```
 Our system will display the records in chronological order on the terminal.
+```txt
+1 9
+2 13
+3 20
+4 22
+```
+You will see something like this if you open the txt file
+
 <a id="a310"></a>
 ### Program Codes in Multiple Files
 
