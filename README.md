@@ -1,4 +1,4 @@
-# ENGG1340
+# EENGG1340 Group 118 (Maze Explore Adventure)
 ### Group member
 ZHOU Ziyue
 Yang Haozhe
