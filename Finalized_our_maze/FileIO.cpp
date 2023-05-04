@@ -12,9 +12,7 @@ bool SortByTime(Record a, Record b);
 void Insertrecord_30(string name, int time, string mode, int siz);
 void Insertrecord_40(string name, int time, string mode, int siz);
 void Insertrecord_20(string name, int time, string mode, int siz);
-void Display_20();
-void Display_30();
-void Display_40();
+void Display(int size);
 void k(Record& a);
 
 
@@ -266,38 +264,27 @@ void Insertrecord_40(string name, int time, string mode, int siz)
 	}
 }
 
-
-
-void Display_20()
+void Display(int size)
 {
 	ifstream fin;
-	fin.open("rank_Classic.txt");
+	switch (size)
+	{
+	case 20 : fin.open("rank_Classic.txt"); break;
+	case 30 : fin.open("rank_Classic_30.txt"); break;
+	case 40 : fin.open("rank_Classic_40.txt"); break;
+	default: cout << "Record system for size " << size << " is currently unavailable." << endl;
+	}
+	if (fin.fail())
+	{
+		cout << "Record system for size " << size << " is currently unavailable." << endl;
+	}
+	else
+	{
 	string line;
 	while (getline(fin, line)) {
 		cout << line << endl;
 	}
 	fin.close();
-}
-void Display_30()
-{
-	ifstream fin;
-	fin.open("rank_Classic_30.txt");
-	string line;
-	while (getline(fin, line)) {
-		cout << line << endl;
 	}
-	fin.close();
 }
-
-void Display_40()
-{
-	ifstream fin;
-	fin.open("rank_Classic_40.txt");
-	string line;
-	while (getline(fin, line)) {
-		cout << line << endl;
-	}
-	fin.close();
-}
-
 
