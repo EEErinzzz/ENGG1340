@@ -1,6 +1,7 @@
 //main.cpp: How to compile: g++ main.cpp maze_gernerator.cpp -o main -l ncurses
 
 #include<iostream>
+#include<iomanip>
 #include<fstream>
 #include<string>
 #include<ncurses.h>
@@ -122,7 +123,9 @@ void GameSetting(int mode)
 	while (exit)
 	{
 		system("clear");
-		cout << "This is the game setting page\nRecord system will be disable if you changed the size\n";
+		cout << "This is the game setting page\nRecord system will be disabled if you changed the size\n";
+		cout << "Enter 1 if you would like to customize your size,then input the size you would like to choose.\n";
+		cout << "Size should be an integer no more than 45.\n";
 		printf("\n\n1. Current Size: %d", record.size);
 		printf("\n2. Return");
 		cout << "\n\n Please enter your choice: ";
@@ -237,8 +240,14 @@ int main()
 	system("clear");
 	welcomepage();
 	endwin();
-	cout << "Gamemode:" << record.GameMode << endl;
-	cout << "Size:" << record.size << endl;
-	cout << "Gametime: " << record.TimeUsed << endl;
+	cout << "Please enter your name: ";
+	cin >> record.PlayerName;
+	cout << "------------------------------" << endl;
+	cout << "Player:" << setw(23)<< right << record.PlayerName << endl;
+	cout << "Gamemode:" << setw(21)<< right << record.GameMode << endl;
+	cout << "Size:" << setw(25)<< right << record.size << endl;
+	cout << "Gametime:" << setw(21)<< right << record.TimeUsed << endl;
+	cout << "------------------------------" << endl;
 	k(record);
+	Display(record.size);
 }
