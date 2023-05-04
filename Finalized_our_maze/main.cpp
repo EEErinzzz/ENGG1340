@@ -236,10 +236,14 @@ void GamePlay_Foggy()
 
 
 int main()
-{
+{	
+	string maincontrol;
+	while (true)
+	{
 	system("clear");
 	welcomepage();
 	endwin();
+	if (record.GameMode == "Game not started") break;
 	cout << "Please enter your name: ";
 	cin >> record.PlayerName;
 	cout << "------------------------------" << endl;
@@ -250,4 +254,9 @@ int main()
 	cout << "------------------------------" << endl;
 	k(record);
 	Display(record.size);
+	cout << "------------------------------" << endl;
+	cout << "Enter 0 if you wish to exit, else enter anything else to continue:" << endl;
+	cin >> maincontrol;
+	if (maincontrol == "0") break;
+	}
 }
