@@ -275,8 +275,11 @@ void Display(int size)
 	else
 	{
 	string line;
+	int count = 0;
 	while (getline(fin, line)) {
+		if (count > 4) break;
 		cout << line << endl;
+		count += 1;
 	}
 	fin.close();
 	}
