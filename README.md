@@ -20,7 +20,7 @@ List of contents
 - Tsang Ka Yu    **UID**: 3036067602
 - Wu Ziye    **UID**: 3036094576
 - Yang Haozhe    **UID**: 3035973725
-- Zhong Ching Yu    **UID**: 
+- Zhong Ching Yu    **UID**: 3036066452
 - Zhou Ziyue    **UID**: 3035980314
 
 <a id="a2"></a>
