@@ -99,7 +99,6 @@ Top 5 records in Classic
 5 999
 ------------------------------
 Enter 0 if you wish to exit, else enter anything else to continue:
-...
 ```
 Our system will display the records in chronological order on the terminal.
 ```txt
