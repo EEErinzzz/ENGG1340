@@ -37,7 +37,7 @@ Feeling bored while playing a traditional maze game? Try the Maze Explore Advent
 ### Window Size Detection
 
 - We used `ioctl()` function from `<sys/ioctl.h>` to detect the window size
--   The game won't start if the system detects that the current window size is not big enough.
+-   ***The game won't start if the system detects that the current window size is not big enough.***
 - Minimum  window size: 45\*45
 <a id="a33"></a>
 ### Classic Mode
@@ -49,7 +49,8 @@ Feeling bored while playing a traditional maze game? Try the Maze Explore Advent
 ### Dark Maze
 
 -   A special version of the maze game where only objects near you are visible.
--   You can increase your sight by pressing '+'
+-   You can increase your sight by pressing 'z'
+-   You can reduce your sight by pressing '-'
 -   Use WASD to move.
 <a id="a35"></a>
 ### Customizable Size
