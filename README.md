@@ -84,21 +84,30 @@ Example:
 
 Assuming that you have just finished a classic maze with a size of 20\*20, a text file called "rank_Classic.txt" will be generated afterward.
 ```txt
-Gamemode: Classic
-Size:20
-Gametime: 22
+Please enter your name: Erin
+------------------------------
+Player:                   Erin
+Gamemode:              Classic
+Size:                       20
+Gametime:                   14
+------------------------------
+Top 5 records in Classic
 1 9
-2 13
-3 20
-4 22
+2 14
+3 60
+4 999
+5 999
+------------------------------
+Enter 0 if you wish to exit, else enter anything else to continue:
 ...
 ```
 Our system will display the records in chronological order on the terminal.
 ```txt
 1 9
-2 13
-3 20
-4 22
+2 14
+3 60
+4 999
+5 999
 ```
 You will see something like this if you open the txt file
 
