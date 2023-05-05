@@ -117,6 +117,8 @@ You will see something like this if you open the txt file
 -   The `Maze_generation.cpp` and `Maze_generation.h` files contain functions that can generate the maze randomly, print the UI, update the player's location, etc.
 <a id="a4"></a>
 ## How to run the game
-1. Type `make main` in your terminal
-2. The executable file `main` should appeared, type `./main` to run it
-3. Enjoy the game
+1. Download the folder `Finalized_our_maze`
+2. Unzip the folder which you downloaded just now
+3. Type `make main` in your terminal under the parent directory `Finalized_our_maze`
+4. The executable file `main` should appeared, type `./main` to run it
+5. Enjoy the game
