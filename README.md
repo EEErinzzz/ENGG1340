@@ -37,7 +37,7 @@ Feeling bored while playing a traditional maze game? Try the Maze Explore Advent
 ### Window Size Detection
 
 - We used `ioctl()` function from `<sys/ioctl.h>` to detect the window size
--   ***The game won't start if the system detects that the current window size is not big enough.***
+-   ***It reminds you with a sentence shown on the top if the system detects that the current window size is not big enough.***
 - Minimum  window size: 45\*45
 <a id="a33"></a>
 ### Classic Mode
