@@ -26,7 +26,7 @@ List of contents
 <a id="a2"></a>
 ## Game Description
 
-Feeling bored while playing a traditional maze game? Try the Maze Explore Adventure now! The maze is now full of fog and darkness, so you won't be able to see everything. As the name suggests, you have to explore the maze yourself and find the exit with limited vision.
+Feeling bored while playing a traditional maze game? Try the Maze Explore Adventure now by downloading folder `Finalized_our_maze`! The maze is now full of fog and darkness, so you won't be able to see everything. As the name suggests, you have to explore the maze yourself and find the exit with limited vision.
 <a id="a3"></a>
 ## Features
 <a id="a31"></a>
